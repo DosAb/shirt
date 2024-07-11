@@ -16,4 +16,29 @@ body
     top: 0;
     left: 0;
     outline: none;
+    z-index: -1;
+}
+
+.layout__colors{
+    display: flex;
+    gap: 15px;
+    padding: 30px;
+}
+
+.colors{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: aquamarine;
+    cursor: pointer;
+}
+
+.blue{
+    background: #2282F2;
+}
+.yellow{
+    background: #F2EA22;
+}
+.orange{
+    background: #F26522;
 }

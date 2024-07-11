@@ -6,6 +6,11 @@ const scene = new THREE.Scene()
 
 const textureLoader = new THREE.TextureLoader()
 
+//get elements to change the color
+const blueBtn = document.querySelector(".blue")
+const yellowBtn = document.querySelector(".yellow")
+const orangeBtn = document.querySelector(".orange")
+
 
 
 const card = new THREE.Mesh(
@@ -17,16 +22,35 @@ const card = new THREE.Mesh(
 
 const shirtTexture = textureLoader.load('./static/shirtTexture.png')
 shirtTexture.flipY = false
+const shirtTextureBlue = textureLoader.load('./static/shirtTextureBlue.png')
+shirtTextureBlue.flipY = false
+const shirtTextureYellow = textureLoader.load('./static/shirtTextureYellow.png')
+shirtTextureYellow.flipY = false
 
 // Load a GLTF model
 const loader = new THREE.GLTFLoader();
+let modelMesh
 loader.load('./static/shirt.glb', (model)=>{
-    const modelMesh = model.scene.children[0]
+    modelMesh = model.scene.children[0]
     modelMesh.material = new THREE.MeshStandardMaterial({map: shirtTexture})
 
-    // modelMesh.scale.set(10)
+    blueBtn.addEventListener("click", ()=>{
+        if(modelMesh){
+            modelMesh.material.map = shirtTextureBlue
+        }
+    })
+    yellowBtn.addEventListener("click", ()=>{
+        if(modelMesh){
+            modelMesh.material.map = shirtTextureYellow
+        }
+    })
+    orangeBtn.addEventListener("click", ()=>{
+        if(modelMesh){
+            modelMesh.material.map = shirtTexture
+        }
+    })
+
     scene.add(modelMesh)
-    console.log(modelMesh)
 })
 
 // Ambient Light
